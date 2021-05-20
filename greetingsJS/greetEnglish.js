@@ -13,7 +13,7 @@ var language = "Please choose language and enter name";
 
 var count = 0;
 var namesGreeted = {};
-let key = 'name';
+
 var retrievedCount;
 
 var retrievedNames;
@@ -23,14 +23,12 @@ emptyStringRef.classList.add('danger');
 if (localStorage['spot']) {
     retrievedCount = localStorage.getItem('spot');
 }
-// if (localStorage['s']) {
-//     retrievedNames = localStorage.getItem('s');
-// }
 
+if(localStorage['s']){
 
+    retrievedNames = JSON.parse(localStorage.getItem('s'));
 
-// retrievedNames = localStorage.getItem('s');
-
+}
 
 counterRef.innerHTML = retrievedCount;
 
@@ -67,11 +65,11 @@ function greet() {
 
     }
 
-    // if (localStorage['s']) {
-        
-    //      namesGreeted[name] = JSON.parse(localStorage['s']);
+    if (localStorage['s']) {
 
-    // }
+        namesGreeted = JSON.parse(localStorage['s']);
+
+    }
 
     if (!radioBtnEng) {
         helloPlusName.innerHTML = language;
@@ -99,14 +97,12 @@ function greet() {
 
         else if (radioBtnEng.value === "English" && namesGreeted[name] === undefined) {
             namesGreeted[name] = 0;
-            // localStorage['s'] = namesGreeted[name];
+           
 
             count++;
-            //add an entry for the user that was greeted in the Object Map
-
-            //update the DOM to display the counter
+           
             counterRef.innerHTML = count;
-            //clearTextArea();
+           
             clearEmptyStringArea();
             clearTextArea();
 
@@ -114,13 +110,13 @@ function greet() {
             ;
             helloPlusName.classList.remove('danger');
 
-            //clearTextArea();  
+            
         }
 
         else if (radioBtnEng.value === "English") {
             helloPlusName.innerHTML = greetEnglish + name;
             helloPlusName.classList.remove('danger');
-            // clearTextArea();
+          
             clearEmptyStringArea();
             clearTextArea();
         }
@@ -128,13 +124,11 @@ function greet() {
 
 
         else if (radioBtnEng.value === "French" && namesGreeted[name] === undefined) {
-            // clearEmptyStringArea();
-
-            // localStorage['s'] = namesGreeted[name]; 
+                        
             count++;
-            //add an entry for the user that was greeted in the Object Map
+           
             namesGreeted[name] = 0;
-            //update the DOM to display the counter
+           
             counterRef.innerHTML = count;
             helloPlusName.innerHTML = greetFrench + name;
             helloPlusName.classList.remove('danger');
@@ -157,14 +151,11 @@ function greet() {
 
 
         else if (radioBtnEng.value === "Spanish" && namesGreeted[name] === undefined) {
-            // clearTextArea(name);
-            // clearEmptyStringArea();
+           
             count++;
-            //add an entry for the user that was greeted in the Object Map
+           
             namesGreeted[name] = 0;
-            // localStorage['s'] = namesGreeted[name]
-
-            //update the DOM to display the counter
+           
             counterRef.innerHTML = count;
             helloPlusName.innerHTML = greetSpanish + name;
             helloPlusName.classList.remove('danger');
@@ -184,7 +175,7 @@ function greet() {
     }
 
     localStorage['spot'] = count;
-    localStorage['s'] = namesGreeted;
+    localStorage['s'] = JSON.stringify(namesGreeted);
 }
 
 
