@@ -24,9 +24,9 @@ if (localStorage['spot']) {
     retrievedCount = localStorage.getItem('spot');
 }
 
-if(localStorage['s']){
+if (localStorage['s']) {
 
-    retrievedNames = JSON.parse(localStorage.getItem('s'));
+    retrievedNames = localStorage.getItem('s');
 
 }
 
@@ -56,7 +56,7 @@ function greet() {
     var nam = nameString.value;
     var name = nam.charAt(0).toUpperCase() + nam.slice(1).toLowerCase();
 
-     
+
     var radioBtnEng = document.querySelector("input[name='langRadioBtn']:checked");
 
     if (localStorage['spot']) {
@@ -97,12 +97,12 @@ function greet() {
 
         else if (radioBtnEng.value === "English" && namesGreeted[name] === undefined) {
             namesGreeted[name] = 0;
-           
+
 
             count++;
-           
+
             counterRef.innerHTML = count;
-           
+
             clearEmptyStringArea();
             clearTextArea();
 
@@ -110,13 +110,13 @@ function greet() {
             ;
             helloPlusName.classList.remove('danger');
 
-            
+
         }
 
         else if (radioBtnEng.value === "English") {
             helloPlusName.innerHTML = greetEnglish + name;
             helloPlusName.classList.remove('danger');
-          
+
             clearEmptyStringArea();
             clearTextArea();
         }
@@ -124,11 +124,11 @@ function greet() {
 
 
         else if (radioBtnEng.value === "French" && namesGreeted[name] === undefined) {
-                        
+
             count++;
-           
+
             namesGreeted[name] = 0;
-           
+
             counterRef.innerHTML = count;
             helloPlusName.innerHTML = greetFrench + name;
             helloPlusName.classList.remove('danger');
@@ -151,11 +151,11 @@ function greet() {
 
 
         else if (radioBtnEng.value === "Spanish" && namesGreeted[name] === undefined) {
-           
+
             count++;
-           
+
             namesGreeted[name] = 0;
-           
+
             counterRef.innerHTML = count;
             helloPlusName.innerHTML = greetSpanish + name;
             helloPlusName.classList.remove('danger');
@@ -174,21 +174,22 @@ function greet() {
 
     }
 
-    localStorage['spot'] = count;
+    localStorage['spot'] = Number(count);
     localStorage['s'] = JSON.stringify(namesGreeted);
 }
 
 
 
 function reset() {
-    var count = 0;
-
+    count1 = 0;
+    counterRef.innerHTML = 0;
+   
 
     localStorage.clear();
-
     localStorage['spot'] = 0;
-    counterRef.innerHTML = 0;
+    location.reload();
 
+   
 
     clearGreetingArea();
     clearEmptyStringArea();
