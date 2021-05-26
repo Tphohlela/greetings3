@@ -51,6 +51,12 @@ function clearCounterArea() {
     counterRef.innerHTML = " ";
 }
 
+var myVar;
+
+function myFunction() {
+  myVar = setTimeout(3000);
+}
+
 function greet() {
 
     var nam = nameString.value;
@@ -72,9 +78,9 @@ function greet() {
     }
 
     if (!radioBtnEng) {
-        helloPlusName.innerHTML = language;
-        helloPlusName.classList.add('danger');
-        clearEmptyStringArea();
+        emptyStringRef.innerHTML = language;
+        emptyStringRef.classList.add('danger');
+        clearGreetingArea();
     }
 
     if (radioBtnEng) {
@@ -86,19 +92,19 @@ function greet() {
             emptyStringRef.innerHTML = emptyString;
 
             clearGreetingArea();
+            myFunction();
         }
 
         else if (name == Number(nameString.value)) {
             emptyStringRef.innerHTML = emptyString;
             clearGreetingArea();
             clearTextArea();
+            myFunction();
 
         }
 
         else if (radioBtnEng.value === "English" && namesGreeted[name] === undefined) {
             namesGreeted[name] = 0;
-
-
             count++;
 
             counterRef.innerHTML = count;
